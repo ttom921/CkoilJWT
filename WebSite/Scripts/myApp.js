@@ -25,6 +25,10 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/template/unauthorize.html',
             controller: 'unauthorizeController'
         })
+        .when('/logout', {
+            templateUrl: '/template/home.html',
+            controller: 'logoutController'
+        })
         
 
 
@@ -33,12 +37,13 @@ App.config(['$routeProvider', function ($routeProvider) {
 App.constant('serviceBasePath', 'http://localhost:52465/');
 
 //controller
-App.controller('homeController', ['$scope', 'dataService', function ($scope, dataService) {
+App.controller('homeController', ['$scope', 'dataService', 'accountService', function ($scope, dataService, accountService) {
     //FETCH DATA FROM SERVICES
     $scope.data = "";
     dataService.GetAnonymousData().then(function (data) {
         $scope.data = data;
     });
+   
 }]);
 App.controller('authenticateController', ['$scope', 'dataService', function ($scope, dataService) {
     $scope.data = "";
@@ -67,6 +72,11 @@ App.controller('loginController', ['$scope', 'accountService', '$location', func
             $scope.message = error.error_description;
         });
     };
+}]);
+App.controller('logoutController', ['$scope', 'accountService', '$location', function ($scope, accountService, $location) {
+    //FETCH DATA FROM SERVICES
+    console.log('logoutController start');
+    accountService.logout();
 }]);
 //service
 App.factory('dataService', ['$http', 'serviceBasePath', function ($http, serviceBasePath) {
@@ -127,8 +137,9 @@ App.factory('accountService', ['$http', '$q', 'serviceBasePath', 'userService', 
         return defer.promise;
     }
     fac.logout = function () {
+        console.log('logout function');
         userService.CurrentUser = null;
-        userService.SerCurrentUser(userService.CurrentUser);
+        userService.SetCurrentUser(userService.CurrentUser);
     }
     return fac;
 }]);
