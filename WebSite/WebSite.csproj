@@ -75,8 +75,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\authenticateController.js" />
+    <Content Include="app\controllers\authorizeController.js" />
+    <Content Include="app\controllers\homeController.js" />
+    <Content Include="app\controllers\loginController.js" />
+    <Content Include="app\controllers\logoutController.js" />
+    <Content Include="app\controllers\unauthorizeController.js" />
+    <Content Include="app\services\dataService.js" />
     <Content Include="index.html" />
-    <Content Include="Scripts\myApp.js" />
+    <Content Include="app\myApp.js" />
+    <Content Include="app\services\authInterceptorService.js" />
+    <Content Include="app\services\authService.js" />
+    <Content Include="app\services\service.js" />
+    <Content Include="Scripts\angular-local-storage.min.js" />
     <Content Include="template\authenticate.html" />
     <Content Include="template\authorize.html" />
     <Content Include="template\home.html" />

@@ -4,6 +4,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angular JS app</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.js"></script>
+    <script src="Scripts/angular-local-storage.min.js"></script>
+    <!-- Load app main script -->
+    <script src="app/myApp.js"></script>
+    <!-- Load services -->
+    <script src="app/services/authInterceptorService.js"></script>
+    <script src="app/services/authService.js"></script>
+    <script src="app/services/dataService.js"></script>
+    <!-- Load controllers -->
+    <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/loginController.js"></script>
+    <script src="app/controllers/logoutController.js"></script>
+    <script src="app/controllers/authenticateController.js"></script>
+    <script src="app/controllers/authorizeController.js"></script>
+    <script src="app/controllers/unauthorizeController.js"></script>
 </head>
 <body ng-app="myApp">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,6 +39,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="#!/home">Home</a></li>
+                    <li><a href="#!/login">login</a></li>
                     <li><a href="#!/authenticated">Authenticated</a></li>
                     <li><a href="#!/authorized">Authorized</a></li>
                     <li><a href="#!/logout">logout</a>  </li>
@@ -36,10 +56,6 @@
         </footer>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular-route.js"></script>
-    <script src="/Scripts/myApp.js"></script>
+    
 </body>
 </html>
