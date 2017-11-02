@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Security.OAuth;
 using System.Web.Http;
+using WebApi.Providers;
 
 [assembly: OwinStartup(typeof(WebApi.Startup))]
 
@@ -24,17 +25,20 @@ namespace WebApi
 
         private void ConfigureOAuth(IAppBuilder app)
         {
-            var CustomAuthProvider = new Providers.CustomAuthProvider();
-            OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions()
+            //var CustomAuthProvider = new CustomAuthProvider();
+            OAuthAuthorizationServerOptions OAuthOptions = new OAuthAuthorizationServerOptions()
             {
+                //For Dev enviroment only (on production should be AllowInsecureHttp = false)
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30), //TimeSpan.FromDays(1),
-                //RefreshTokenProvider = new CustomRefreshTokenProvider()
-                Provider = CustomAuthProvider
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                //AccessTokenExpireTimeSpan = FromMinutes(3);
+                //AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(30),
+                RefreshTokenProvider = new SimpleRefreshTokenProvider(),
+                Provider = new ApplicationOAuthProvider()
             };
             // Token Generation
-            app.UseOAuthAuthorizationServer(options);
+            app.UseOAuthAuthorizationServer(OAuthOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
