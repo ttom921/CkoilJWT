@@ -6,7 +6,7 @@ using System.Web.Http.Controllers;
 
 namespace WebApi.Filter
 {
-    public class AuthorizeAttribute:System.Web.Http.AuthorizeAttribute
+    public class TokenAuthorizeAttribute: System.Web.Http.AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
         {
