@@ -100,21 +100,25 @@
 
                 localStorageService.remove('authorizationData');
 
-                $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-
+                $http({
+                    method: 'post',
+                    url: serviceBase + "/token",
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    data: data
+                }).then(function (res) {
+                    var response = res.data;
                     localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
-
                     deferred.resolve(response);
-
-                }).error(function (err, status) {
+                }, function (error) {
+                    //console.log('_refreshToken  error=data' + error.data + ' statusText=' + error.statusText);
                     _logOut();
-                    deferred.reject(err);
+                    deferred.reject(error);
                 });
             }
         }
 
         return deferred.promise;
-    };
+    };//_refreshToken
 
     //var _obtainAccessToken = function (externalData) {
 
