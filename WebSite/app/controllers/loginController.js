@@ -10,7 +10,7 @@
         authService.login($scope.loginData).then(function (response) {
             $location.path('/home');
         }, function (error) {
-            $scope.message = error.error_description;
+            $scope.message = error.data.error_description;
         });
     };
 }]);
