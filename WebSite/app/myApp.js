@@ -29,6 +29,10 @@ App.config(function ($routeProvider) {
             templateUrl: '/template/home.html',
             controller: 'logoutController'
         })
+        .when('/refreshtoken', {
+            templateUrl: '/template/refresh.html',
+            controller: 'refreshController'
+        })
         
 
 

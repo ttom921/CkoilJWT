@@ -80,6 +80,7 @@
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\controllers\loginController.js" />
     <Content Include="app\controllers\logoutController.js" />
+    <Content Include="app\controllers\refreshController.js" />
     <Content Include="app\controllers\unauthorizeController.js" />
     <Content Include="app\services\dataService.js" />
     <Content Include="index.html" />
@@ -92,6 +93,7 @@
     <Content Include="template\authorize.html" />
     <Content Include="template\home.html" />
     <Content Include="template\login.html" />
+    <Content Include="template\refresh.html" />
     <Content Include="template\unauthorize.html" />
     <Content Include="Web.config" />
   </ItemGroup>
