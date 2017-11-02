@@ -24,8 +24,10 @@ namespace WebApi.Providers
             var refreshTokenProperties = new AuthenticationProperties(context.Ticket.Properties.Dictionary)
             {
                 IssuedUtc = context.Ticket.Properties.IssuedUtc,
-                 //時間是3個月
-                ExpiresUtc = DateTime.UtcNow.AddMonths(1)
+                //時間是1個月
+                //ExpiresUtc = DateTime.UtcNow.AddMonths(1);
+                ExpiresUtc = DateTime.UtcNow.AddDays(1)
+                 //ExpiresUtc = DateTime.UtcNow.AddMinutes(1)
             };
             var refreshTokenTicket = new AuthenticationTicket(context.Ticket.Identity, refreshTokenProperties);
             _refreshTokens.TryAdd(guid, refreshTokenTicket);
