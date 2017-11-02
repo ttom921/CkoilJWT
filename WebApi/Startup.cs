@@ -31,9 +31,10 @@ namespace WebApi
                 //For Dev enviroment only (on production should be AllowInsecureHttp = false)
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                //AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 //AccessTokenExpireTimeSpan = FromMinutes(3);
                 //AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(30),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(4),
                 RefreshTokenProvider = new SimpleRefreshTokenProvider(),
                 Provider = new ApplicationOAuthProvider()
             };
