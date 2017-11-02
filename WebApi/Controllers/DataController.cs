@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
+using WebApi.Filter;
 
 namespace WebApi.Controllers
 {
@@ -26,17 +27,24 @@ namespace WebApi.Controllers
             return Ok("Hello " + identity.Name);
         }
 
-
-        [Authorize(Roles ="admin")]
+        
+        [TokenAuthorizeAttribute(Roles = "admin")]
+        // [Authorize(Roles ="admin")]
         [HttpGet]
         [Route("api/data/authorize")]
         public IHttpActionResult GetForAdmin()
         {
             var identity = (ClaimsIdentity)User.Identity;
+            Claim point = identity.FindFirst("Point");
+            int ipoint = 0;
+            if(point!=null)
+            {
+                ipoint = int.Parse(point.Value);
+            }
             var roles = identity.Claims
                 .Where(c => c.Type == ClaimTypes.Role)
                 .Select(c => c.Value);
-            return Ok("Hello "+identity.Name+ " Role:"+ string.Join(",",roles.ToList()));
+            return Ok("Hello "+identity.Name+ " Role:"+ string.Join(",",roles.ToList())+" Point="+ ipoint);
         }
         
     }
